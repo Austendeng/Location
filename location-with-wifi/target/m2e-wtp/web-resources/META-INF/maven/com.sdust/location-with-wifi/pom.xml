@@ -1,0 +1,298 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.sdust</groupId>
+  <artifactId>location-with-wifi</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<spring.version>4.1.2.RELEASE</spring.version>
+    <war.name>wifi-location</war.name>
+  </properties>
+  <dependencies>
+    <!-- 1 Spring START-->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-expression</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-beans</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-oxm</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <!-- Spring AOP Start -->
+    <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-aop</artifactId>
+           <version>${spring.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-aspects</artifactId>
+           <version>${spring.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.aspectj</groupId>
+           <artifactId>aspectjrt</artifactId>
+           <version>1.8.7</version>
+       </dependency>
+       <dependency>
+           <groupId>org.aspectj</groupId>
+           <artifactId>aspectjweaver</artifactId>
+           <version>1.8.7</version>
+       </dependency>
+       <dependency>
+           <groupId>cglib</groupId>
+           <artifactId>cglib</artifactId>
+           <version>3.2.0</version>
+       </dependency>
+       <!-- Spring AOP End-->
+    <!-- Spring MVC集成hibernate的验证-->
+    <dependency>
+           <groupId>org.hibernate</groupId>
+           <artifactId>hibernate-validator</artifactId>
+           <version>5.2.2.Final</version>
+       </dependency>
+    
+	<!-- 2 Junit-->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>3.8.1</version>
+		<scope>test</scope>
+	</dependency>
+	
+	<!-- 3 Servlet START -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>2.5</version>
+		<scope>provided</scope>
+	</dependency>
+	
+	<!-- 4 DB drive -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<!-- <version>5.1.35</version> -->
+		<version>5.1.38</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-dbcp</groupId>
+		<artifactId>commons-dbcp</artifactId>
+		<version>1.4</version>
+	</dependency>
+	
+	<!-- 5 mybatis -->
+	<dependency>
+	  	<groupId>org.mybatis</groupId>
+	  	<artifactId>mybatis</artifactId>
+	  	<version>3.3.0</version>
+    </dependency>
+    <!-- 添加mybatis与Spring整合的核心包 -->
+    <dependency>
+	  	<groupId>org.mybatis</groupId>
+	  	<artifactId>mybatis-spring</artifactId>
+	  	<version>1.2.3</version>
+    </dependency>
+	<!-- mybatis私人分页插件 -->
+	<dependency>
+	    <groupId>com.github.pagehelper</groupId>
+	    <artifactId>pagehelper</artifactId>
+	    <version>4.0.0</version>
+	</dependency>
+	<!-- 7 json-lib -->
+	<dependency>
+		<groupId>net.sf.json-lib</groupId>
+		<artifactId>json-lib</artifactId>
+		<version>2.3</version>
+		<classifier>jdk15</classifier>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-core</artifactId>
+		<version>2.3.0</version>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.3.0</version>
+	</dependency>
+	<dependency>  
+	    <groupId>org.codehaus.jackson</groupId>  
+	    <artifactId>jackson-core-lgpl</artifactId>  
+	    <version>1.9.6</version>  
+	</dependency>  
+	<dependency>  
+	    <groupId>org.codehaus.jackson</groupId>  
+	    <artifactId>jackson-core-asl</artifactId>  
+	    <version>1.9.4</version>  
+	</dependency>  
+	<dependency>  
+	    <groupId>org.codehaus.jackson</groupId>  
+	    <artifactId>jackson-mapper-asl</artifactId>  
+	    <version>1.9.5</version>  
+	</dependency>  
+	<dependency>  
+	    <groupId>org.codehaus.jackson</groupId>  
+	    <artifactId>jackson-mapper-lgpl</artifactId>  
+	    <version>1.9.6</version>  
+	</dependency>  
+	<!-- 13 httpclient -->
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpclient</artifactId>
+		<version>4.3.6</version>
+	</dependency>
+	<dependency>
+	    <groupId>net.java.dev.jna</groupId>
+	    <artifactId>jna</artifactId>
+	    <version>4.2.1</version>
+	</dependency>
+	
+		<!-- 9 file -->
+	<dependency>
+		<groupId>commons-fileupload</groupId>
+		<artifactId>commons-fileupload</artifactId>
+		<version>1.3.1</version>
+	</dependency>     
+  </dependencies>
+  
+  <profiles>
+      <profile>
+            <id>dev</id>
+            <activation>
+                <!-- 默认激活开发环境 -->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+      </profile>
+  </profiles>
+  
+  <build>
+  		<finalName>${project.artifactId}</finalName>
+		<resources>
+            <resource>
+                <directory>${project.basedir}/src/main/java</directory>
+                <filtering>true</filtering>
+                <!-- 包含的文件!默认src/main/java 下只会编译java文件，会导致除java的其他如hbm.xml 或者 properties文件可能某些情况不打包的情况发生 -->
+                <includes>
+                    <!-- mybatis xml -->
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <!-- 不包含的文件 -->
+                <excludes>
+                    <!-- jetty用，其中更改静态资源的锁定策略 -->
+                    <exclude>webdefault.xml</exclude>
+                    <!-- mybatis 自动构建代码用，只在开发阶段使用 -->
+                    <exclude>mybatis-generator.xml</exclude>
+                    <exclude>lib/mysql-connector-java-5.1.38.jar</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        
+		<plugins>
+		  <!-- 由于历史原因 maven-compiler只支持编译Java 1.3 所以要自己手动配置其支持1.5 不然跑test的时候不能使用 
+                @Test 注解！！ -->
+            <plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-compiler-plugin</artifactId>
+			    <version>3.3</version>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                </configuration>
+            </plugin>
+            <!-- 自动打包 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <warName>${war.name}</warName>
+                </configuration>
+            </plugin>
+			<!-- maven整合tomcat -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+			    <artifactId>tomcat7-maven-plugin</artifactId>
+			    <version>2.2</version>
+				<configuration>
+                    <port>8080</port>
+                    <path>/iaddress</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <finalName>iaddress</finalName>
+                    <server>tomcat7</server>
+                </configuration>
+			</plugin>
+			<!-- mybatis-generator 自动代码插件 -->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                	<!-- 配置文件 -->
+                    <configurationFile>src/main/resources/mybatis-generator.xml</configurationFile>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+            </plugin>
+            
+         
+        <plugin>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-compiler-plugin</artifactId>  
+            <version>2.3.2</version>  
+            <configuration>  
+                <source>1.8</source>  
+                <target>1.8</target>  
+            </configuration>  
+        </plugin>  
+            
+		</plugins>
+  </build>
+</project>

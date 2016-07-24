@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" 
+	"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- maven goals:mybatis-generator:generate -->
+
+    <!-- 指定驱动的路径 -->
+    <classPathEntry location="src/main/resources/lib/mysql-connector-java-5.1.9.jar"/>
+    <!--导入属性配置 -->
+    <context id="MySql" targetRuntime="MyBatis3" defaultModelType="flat">
+    	<!-- 给表/字段名加上反单引号，因为有时候表名为两个单词中间一个空格 -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+    
+        <!-- 自动生成的注释无用，不要 是否去除自动生成的注释 true：是 ： false:否 -->
+        <commentGenerator>
+        	<!-- 阻止生成的注释包含时间戳，防止每次代码都不一样导致SVN提交 -->
+            <property name="suppressDate" value="true"/>
+            <!-- 如果有可能覆盖运行本插件就不要关闭注释，因为没有注解@mbggenerated会导致追加生成而不是覆盖 -->
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator>
+        
+        <!--jdbc的数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/mysql?useUnicode=true" userId="root" password="123456"/>
+        
+        <!-- 是否强制DECIMAL和NUMERIC类型的字段转换为Java类型的java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        
+        <!-- Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类
+            targetPackage     指定生成的model生成所在的包名
+            targetProject     指定在该项目下所在的路径  -->
+        <javaModelGenerator targetPackage="com.sdust.location.dao.bean" targetProject="src/main/java">
+            <!-- 是否对model添加 构造函数 -->
+            <property name="constructorBased" value="true"/>
+            <!-- 给Model添加一个父类 -->
+            <!--<property name="rootClass" value="com.ddup.base"/>-->
+            <!-- 如果true，MBG会根据catalog和schema来生成子包。如果false就会直接用targetPackage属性。默认为false -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 数据库查询结果trim -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        
+        <!--Mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 -->
+        <sqlMapGenerator targetPackage="com.sdust.location.dao.xml" targetProject="src/main/java">
+        	<property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+            type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+            type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+            type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口 -->
+        <javaClientGenerator targetPackage="com.sdust.location.dao.interfaces" targetProject="src/main/java" type="XMLMAPPER">
+        	<property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 要自动生成的表 +++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- 要生成哪些表 全部为tableName="%" -->
+        <!-- enableXXX:XXX代表多种SQL方法，该属性用来指定是否生成对应的XXX语句 -->
+        <table tableName="location_wifi_fingerprint" domainObjectName="LocationWifiFingerprint" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <!-- 列重命名<columnRenamingRule searchString="^CUST_" replaceString="" /> -->
+            <!-- <generatedKey column="id" sqlStatement="MySql"/> -->
+        </table>
+    </context>
+</generatorConfiguration>
